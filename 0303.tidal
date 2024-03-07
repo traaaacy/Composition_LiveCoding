@@ -1,0 +1,85 @@
+
+hush
+once $ "ul:9*2(2,8)"
+once $ "uxay:2*2"  # hpf (slow 4 (1000*saw + 100)) # speed (slow 4 (range 1 2 saw)) # gain 1.6 # speed 6
+once $ "tink:3"
+once $ s "trump:4 "
+
+capy1 = do
+  d1 $ slow 2 $ s "808ht:1*2 808ht:2*3 808ht:3*2 <808ht:4*3 808ht:5*2>" # room 0.7 # gain 1
+  d2 $ fast 2 $ s "voodoo:1*2 voodoo:2 voodoo:3 <voodoo:4*2 voodoo:0>" # cut 1 # speed "1" # gain 1.2
+  d3 $ ccv "2 3 4 5" # ccn "0" # s "midi"
+
+capy2 = do
+    d1 $ fast 1 $ s "808ht:1*2 808ht:2*3 808ht:3*2 <808ht:4*3 808ht:5*2>" # room 0.7 # gain 1
+    d2 $ fast 2 $ s "voodoo:1*2 voodoo:2 voodoo:3 <voodoo:4*2 voodoo:0>" # cut 1 # speed "1" # gain 1.2
+    d3 $ ccv "[2 4] [3] [4] [<[5 6 5] 5>]" # ccn "0" # s "midi"
+
+capy3
+
+capy3  = do
+  d1 $ fast 2 $ s "bass3(3,8)" # cut 1 # n (scale "minor" "0 2 3 5") # speed "1" # gain 1.2
+  d4 $ s "bd*4"
+  d5 $ s "sn*2(4,8)" # nudge (1/4) # gain 0.8
+  d12 $ ccv "0 2 [0 2 ] [0 2 0 2 0 2] " # ccn "1" # s "midi"
+
+
+capy4  = do
+    d1 $ fast 2 $ s "bass3(3,8)" # cut 1 # n (scale "minor" "0 2 3 5") # speed "1" # gain 1.2
+    d4 $ s "bd*4"
+    d5 $ s "sn*2(4,8)" # nudge (1/4) # gain 0.8
+    d6 $ slow 1 $ "tabla" # n "<7! 3! 2!2>" # gain 1.2
+
+capy5  = do
+    d1 $ fast 2 $ s "bass3(3,8)" # cut 1 # n (scale "minor" "0 2 3 5") # speed "1"
+    d4 $ s "bd*4"
+    d5 $ s "sn*2(4,8)" # nudge (1/4) # gain 0.8
+    d7 $ s " ~ yeah:29*4" # gain 2.5
+    d8 $ slow 1 $  "tech ~ " # n "<10 5 2 1 7 6 8 9 12 11>" # gain 1.2 # room 0.5 # krush 1
+
+  d10 $ ccv "[2 4] [3] [4] [<[5 6 5] 5>]" # ccn "0" # s "midi"
+  d10 $ ccv "2*2 3*3 4*2 <5*3 5(2,8)>" # ccn "0" # s "midi"
+  d12 $ ccv "0 2 0 2 0 2 " # ccn "1" # s "midi"
+
+d1 $ s "db*4"
+----
+hush
+d3 $ ccv "2 3 4 5" # ccn "0" # s "midi"
+once $ "ul:9*2(2,8)"
+once $ "uxay:2*2"  # hpf (slow 4 (1000*saw + 100)) # speed (slow 4 (range 1 2 saw)) # gain 1.6 # speed 6
+once $ "tink:3"
+once $ s "trump:4 "
+d1 $ slow 2 $ s "808ht:1*2 808ht:2*3 808ht:3*2 <808ht:4*3 808ht:5*2>" # room 0.7 # gain 1
+
+
+capy1
+
+capy2
+d3 $ ccv "[2 4] [3] [4] [<[5 6 5] 5>]" # ccn "0" # s "midi"
+
+capy1
+
+  d6 $ qtrigger $ filterWhen (>=0) $ seqP [
+    (0, 1, s "yeah:3*4" # gain 1.2), -- (0, 1) is for the cycle 0 to 1
+    (1,2, s "yeah:4*8" # gain 1.2),
+    (2,3, s "yeah:30*16" # gain 1.4) ,
+    (3,4, s "yeah:5:2*16" # gain 1.2)
+  ] # room 0.3 # hpf (slow 4 (1000*saw + 100)) # speed (slow 4 (range 1 2 saw))
+
+d12 $ ccv "0 2 0 2 " # ccn "1" # s "midi"
+capy3
+
+
+capy4
+d12 $ ccv "0 2 [0 2 ] [0 2 0 2 0 2] " # ccn "1" # s "midi"
+
+capy5
+
+d1 silence
+d2 silence
+d3 silence
+d4 silence
+d5 silence
+d8 silence
+d7 silence
+hush
